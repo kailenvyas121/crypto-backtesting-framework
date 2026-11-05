@@ -1,0 +1,31 @@
+{
+  "requested_start": "2010-01-01 00:00:00+00:00",
+  "asset_type": "equity",
+  "provider": "yfinance",
+  "exchange": null,
+  "ticker": "SPY",
+  "pair": null,
+  "timeframe": "1d",
+  "timestamp_convention": "session date at 00:00 UTC (close = official XNYS close)",
+  "rows": 4233,
+  "first_timestamp": "2010-01-04 00:00:00+00:00",
+  "last_timestamp": "2026-10-30 00:00:00+00:00",
+  "updated_at": "2026-10-30T22:15:17+00:00",
+  "validation": "PASS",
+  "missing_bars": 0,
+  "local_file": "data/raw/market/equities/SPY_1d.parquet",
+  "revisions": [
+    {
+      "at": "2026-10-09T15:25:36+00:00",
+      "bars": [
+        "2026-09-29 00:00:00+00:00"
+      ]
+    },
+    {
+      "at": "2026-10-30T22:15:17+00:00",
+      "bars": [
+        "2026-10-08 00:00:00+00:00"
+      ]
+    }
+  ]
+}

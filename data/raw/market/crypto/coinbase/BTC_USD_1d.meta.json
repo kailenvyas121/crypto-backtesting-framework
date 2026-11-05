@@ -1,0 +1,17 @@
+{
+  "requested_start": "2015-01-01 00:00:00+00:00",
+  "asset_type": "crypto",
+  "provider": "ccxt",
+  "exchange": "coinbase",
+  "ticker": "BTC",
+  "pair": "BTC/USD",
+  "timeframe": "1d",
+  "timestamp_convention": "bar open time, UTC",
+  "rows": 4120,
+  "first_timestamp": "2015-07-20 00:00:00+00:00",
+  "last_timestamp": "2026-10-29 00:00:00+00:00",
+  "updated_at": "2026-10-30T22:15:16+00:00",
+  "validation": "PASS",
+  "missing_bars": 0,
+  "local_file": "data/raw/market/crypto/coinbase/BTC_USD_1d.parquet"
+}

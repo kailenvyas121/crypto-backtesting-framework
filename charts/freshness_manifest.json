@@ -1,0 +1,111 @@
+{
+  "charts/btc_buy_hold/final/btc_buy_hold_growth.png": {
+    "output": "47608f3304a8d994",
+    "inputs": {
+      "scripts/chart_btc_buy_hold_growth.py": "7bdca4dc25da015d",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_buy_hold/final/btc_buy_hold_drawdown.png": {
+    "output": "171fbc336a783e2b",
+    "inputs": {
+      "scripts/chart_btc_buy_hold_drawdown.py": "2b2596c035cfd3a3",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_buy_hold/final/btc_buy_hold_table.png": {
+    "output": "c2efa0cb3a9929c8",
+    "inputs": {
+      "scripts/chart_btc_buy_hold_table.py": "944263fef494a9fd",
+      "scripts/house_style.py": "8d74d19809699286",
+      "src/metrics.py": "6af0773be8bbc9b6",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_sma_cross_50_200/final/btc_sma_cross_growth.png": {
+    "output": "a44f45113f61f6f1",
+    "inputs": {
+      "scripts/chart_btc_sma_cross_growth.py": "f6435ac2939990eb",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_sma_cross_50_200_2022_2026-08.csv": "a3b9956698155a0f",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_sma_cross_50_200/final/btc_sma_cross_drawdown.png": {
+    "output": "e503b7dad1d31bc4",
+    "inputs": {
+      "scripts/chart_btc_sma_cross_drawdown.py": "74505200a1e65f19",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_sma_cross_50_200_2022_2026-08.csv": "a3b9956698155a0f",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_sma_cross_50_200/final/btc_sma_cross_table.png": {
+    "output": "808da007badfa8b2",
+    "inputs": {
+      "scripts/chart_btc_sma_cross_table.py": "52dd6ef0e2538579",
+      "scripts/house_style.py": "8d74d19809699286",
+      "src/metrics.py": "6af0773be8bbc9b6",
+      "data/processed/btc_sma_cross_50_200_2022_2026-08.csv": "a3b9956698155a0f",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_mom_sma/final/btc_mom_sma_growth.png": {
+    "output": "a23feeb3114b4e98",
+    "inputs": {
+      "scripts/chart_btc_mom_sma_growth.py": "0a1c81981b392db4",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_mom_sma_2022_2026-08.csv": "d6bc388d3d45f721",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_mom_sma/final/btc_mom_sma_drawdown.png": {
+    "output": "42a36610e25c2ab5",
+    "inputs": {
+      "scripts/chart_btc_mom_sma_drawdown.py": "7fee242de019dae1",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_mom_sma_2022_2026-08.csv": "d6bc388d3d45f721",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_mom_sma/final/btc_mom_sma_table.png": {
+    "output": "096648aa1635e303",
+    "inputs": {
+      "scripts/chart_btc_mom_sma_table.py": "c4795bb61fd0f19c",
+      "scripts/house_style.py": "8d74d19809699286",
+      "src/metrics.py": "6af0773be8bbc9b6",
+      "data/processed/btc_mom_sma_2022_2026-08.csv": "d6bc388d3d45f721",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147"
+    }
+  },
+  "charts/btc_trend_predictability/final/btc_trend_predictability_tstats.png": {
+    "output": "da333dffb9ac7ed7",
+    "inputs": {
+      "scripts/chart_btc_trend_predictability.py": "1493b7828e2b070d",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_trend_predictability.csv": "6e06c40bb6d4e0cf",
+      "data/processed/btc_trend_predictability_null.csv": "7ca5db38817ceaed"
+    }
+  },
+  "charts/btc_trend_predictability/final/btc_trend_overlay_growth.png": {
+    "output": "b6447f98ab9074aa",
+    "inputs": {
+      "scripts/chart_btc_trend_overlay.py": "f0734de0a39bb365",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_buy_hold_2022_2026-08.csv": "d2a794a6443f6147",
+      "data/processed/btc_sma_cross_50_200_2022_2026-08.csv": "a3b9956698155a0f",
+      "data/processed/btc_trend_winner_2022_2026-08.csv": "a2f044605257bf99",
+      "data/processed/btc_mom_sma_2022_2026-08.csv": "d6bc388d3d45f721"
+    }
+  },
+  "charts/btc_live_update/final/btc_live_update_growth.png": {
+    "output": "96601e1a3d2045cc",
+    "inputs": {
+      "scripts/chart_btc_live_update.py": "9005972a00dab1cb",
+      "scripts/house_style.py": "8d74d19809699286",
+      "data/processed/btc_live_update.csv": "ba8a6589f823f9f6"
+    }
+  }
+}
