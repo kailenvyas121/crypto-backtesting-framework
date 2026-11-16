@@ -237,8 +237,8 @@ Recreate per project:
 
 - **venv.** From a clone, `python3 -m venv .venv` works normally and is what the README documents.
   On my own machine the working copy sits in a folder whose name contains `:`, the PATH separator,
-  which `python -m venv` refuses to write into, so the venv lives at `~/.venvs/research` there and
-  the notebook kernel is named "Python (research)". That is a local workaround, not a requirement.
+  which `python -m venv` refuses to write into, so the venv lives at `~/.venvs/research` there.
+  That is a local workaround, not a requirement.
 - **`plotly==5.24.1` is pinned alongside `kaleido==0.2.1`.** Plotly 6.2+ / 7 refuse to export
   with kaleido 0.2.x and demand kaleido v1 -- the one that hangs. Keep the pair together.
 - **Market data comes from `src/market_data.py`, not tvdatafeed.** See the README.
