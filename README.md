@@ -16,7 +16,7 @@ every run. One command rebuilds every backtest, runs every audit, and redraws ev
 |---|---|---|---|---|
 | BTC buy & hold (benchmark) | +70% | 0.48 | −67% | — |
 | 50/200-day SMA cross, long/short | −0.8% | 0.21 | −64% | Loses to buy & hold (whipsawed) |
-| **12-month momentum + 200-day SMA, long/short** ("Simplicity in Trading BTC") | **+646%** | **1.22** | **−32%** | Beats buy & hold; robust, but rests on two short calls (p = 0.066) |
+| **12-month momentum + 200-day SMA, long/short** ("The Simplicity of Trading Bitcoin") | **+646%** | **1.22** | **−32%** | Beats buy & hold; robust, but rests on two short calls (p = 0.066) |
 | Close vs 50-day SMA, long/short (data-mined winner of 13 features) | +187% | 0.72 | −57% | Not significant after multiple-testing correction (p = 0.054) |
 
 Coinbase BTC-USD daily bars, gross of costs. Position set at each close, traded from the next bar.
@@ -29,6 +29,35 @@ nearby parameter settings and all 25 start dates tested. But the edge comes from
 predictive" one changes between periods (rank correlation −0.58 out of sample). Choosing indicators by past ranking
 is mostly noise.
 
+## What's tested here
+
+Four pre-registered studies, run in order. Each one's rules were written into this README before the
+backtest ran, and two of the four came back negative. The full spec, result, amendments and audit for
+each is in the research log below.
+
+| | Study | Question | Verdict |
+|---|---|---|---|
+| **Spec 1** | BTC buy & hold | What does an unlevered, never-rebalanced position return? The benchmark everything else is measured against | +70%, Sharpe 0.48, −67% drawdown |
+| **Spec 2** | 50/200-day SMA cross, long/short | Does the textbook golden/death cross beat buy & hold risk-adjusted? | **Null stands.** −0.8% vs +70%. Nine crosses, whipsawed three times |
+| **Study A** | 13 trend features vs next-day return | Of a fixed set of common trend indicators, which carry information, and does a ranking survive out of sample? | **Inconclusive.** The winner fails the best-of-13 correction (p = 0.054), and discovery-to-holdout rank correlation is **−0.58** |
+| **Spec 3** | 12-month momentum + 200-day SMA, long/short | Does a slow two-condition trend rule beat buy & hold? | **Null rejected**, but the edge is two short calls and the random-timing null gives p = 0.066 |
+
+**What each result gets put through.** Every strategy, not just the ones that worked:
+
+- **Lookahead:** `signals.assert_causal()` plus a future-scramble at 40 cut dates, checking earlier values stay bit-identical
+- **Re-derivation:** every backtest recomputed from raw prices in plain Python without the framework's own code, matching to ~1e-14
+- **Execution:** one extra day of delay (lag 2), and fills at the actual next-day open instead of the close
+- **Costs:** 10 bps per unit of turnover, and held shorts vs daily-rebalanced shorts
+- **Parameter sensitivity:** a 25-setting neighborhood grid around the chosen parameters
+- **Start-date sensitivity:** 25 month-end start dates
+- **Random-timing null:** the same position path shifted to the wrong dates, 2,000 shifts
+- **Multiple-testing null:** 10,000 circular shifts for anything picked as best-of-N
+- **Calibration controls:** a deliberately peeking feature (scores t = 25.5, as it should) and 200 coin-flip features (sd of t = 1.02)
+- **Data:** daily bars rebuilt from hourly candles and cross-checked against a second exchange
+
+The headline finding is not that a rule won. It is that the rule that won **cannot be separated from luck at 5%**
+on this window, and the README says so.
+
 ## What makes it rigorous
 
 - **Pre-registration.** Each strategy's rules, window, and success criteria are written into this README before
@@ -39,7 +68,7 @@ is mostly noise.
   zero-day lag. Each strategy is also stress-tested with an extra day of delay.
 - **No black boxes.** `verify_processed.py` recomputes every backtest from raw prices in plain Python, without using
   the framework's own code, and checks it matches to ~1e-14.
-- **Overfitting checks.** Parameter-neighbourhood and start-date sweeps, a random-timing null (the same trades on the
+- **Overfitting checks.** Parameter-neighborhood and start-date sweeps, a random-timing null (the same trades on the
   wrong dates), and a best-of-N shuffled null for anything chosen from a set of candidates.
 - **Verified data.** Daily bars are rebuilt from hourly candles, the cache is re-checked against a fresh Coinbase pull,
   and prices are cross-checked against Bitstamp (within 0.42% every day since 2020).
@@ -173,8 +202,12 @@ Audit (`scripts/verify_btc_trend_predictability.py`): the split matches the stat
 
 ## Spec 3 -- BTC 12-month momentum + 200-day SMA, long/short (pre-registered 2026-10-07)
 
-- **Source:** my own earlier model, published as "Simplicity in Trading BTC" ("long unless 12m momentum & 200d MA both go negative, then short";
-  posted result +4,258% vs +774% buy & hold over 6 years, window not recorded, so not reproduced here).
+- **Source:** the rule published in "The Simplicity of Trading Bitcoin", a Coinbase Institutional Research weekly
+  publication dated 26 June 2026 that I contributed the analysis to: long unless 12-month momentum and the 200-day
+  trend both turn negative, then short. The published result was +4,258% vs +774% buy & hold over roughly six years.
+  **Nothing from that work is reused here.** The published window and implementation are not restated, no code or data
+  from it appears in this repo, and the rule below is re-specified from the description above and re-derived from
+  scratch on public Coinbase candles using only the code in `src/`.
 - **Rule:** after each daily close, `mom` = close / close 365 days earlier - 1 and `sma` = 200-day simple
   average of close. Short (-1 BTC) when `mom < 0` AND `close < sma`; otherwise long (+1 BTC). Always in
   the market, unlevered. Shorts held (`sizing="units"`). Decided at *t*'s close, earns *t+1*'s return.
@@ -222,9 +255,9 @@ not a proven edge.
 ## Tracking update (rules unchanged, data after the pre-registered window)
 
 `scripts/build_btc_live_update.py` extends every rule unchanged to the latest closed bar; chart:
-`charts/btc_live_update/final/`. As of the 8 Oct 2026 close ($81,693; BTC +4.0% since 31 Aug): buy & hold +76.8%,
-50/200 +3.5%, spec 3 +675.5%, Study A winner +198.6% (all since 31 Dec 2021). All four are long now. Only 38 days
-out of sample, far too short to judge anything.
+`charts/btc_live_update/final/`. As of the 29 Oct 2026 close ($77,780; BTC −1.0% since 31 Aug): buy & hold +68.3%,
+50/200 −1.5%, spec 3 +638.4%, Study A winner +210.1% (all since 31 Dec 2021). Spec 3 and the 50/200 cross are long;
+the Study A winner flipped short on 22 Oct. Only 59 days out of sample, far too short to judge anything.
 
 ## Integrity checks that run on every `run_all.py`
 
@@ -288,14 +321,14 @@ tickers carries survivorship bias; nothing here corrects for it.
 One command rebuilds everything, audits it, and redraws every chart. It stops loudly if any check fails.
 
 ```bash
-~/.venvs/research/bin/python scripts/run_all.py            # uses cached prices
-~/.venvs/research/bin/python scripts/run_all.py --online   # also refreshes prices + audits them vs Coinbase and Bitstamp
+python scripts/run_all.py            # uses cached prices
+python scripts/run_all.py --online   # also refreshes prices + audits them vs Coinbase and Bitstamp
 ```
 
-To explore or try a new idea, open the notebook (kernel "Python (research)"):
+To explore or try a new idea, open the notebook:
 
 ```bash
-~/.venvs/research/bin/jupyter lab notebooks/research_book.ipynb
+jupyter lab notebooks/research_book.ipynb
 ```
 
 ## Backtest rules (every strategy, no exceptions)

@@ -235,10 +235,10 @@ Recreate per project:
 
 ## This project's deviations (read these first)
 
-- **venv lives outside the repo, at `~/.venvs/research`.** This folder's name contains `:`,
-  which is the PATH separator, and `python -m venv` refuses to create one here. Use
-  `~/.venvs/research/bin/python scripts/...` and the Jupyter kernel "Python (research)".
-  Renaming the folder to drop the `:` would let `.venv/` live here as usual.
+- **venv.** From a clone, `python3 -m venv .venv` works normally and is what the README documents.
+  On my own machine the working copy sits in a folder whose name contains `:`, the PATH separator,
+  which `python -m venv` refuses to write into, so the venv lives at `~/.venvs/research` there and
+  the notebook kernel is named "Python (research)". That is a local workaround, not a requirement.
 - **`plotly==5.24.1` is pinned alongside `kaleido==0.2.1`.** Plotly 6.2+ / 7 refuse to export
   with kaleido 0.2.x and demand kaleido v1 -- the one that hangs. Keep the pair together.
 - **Market data comes from `src/market_data.py`, not tvdatafeed.** See the README.

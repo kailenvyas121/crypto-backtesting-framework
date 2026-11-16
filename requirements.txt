@@ -1,6 +1,6 @@
-# Pinned. Install into ~/.venvs/research (see WORKFLOW.md for why not ./.venv).
-#   python3 -m venv ~/.venvs/research
-#   ~/.venvs/research/bin/pip install -r requirements.txt
+# Pinned.
+#   python3 -m venv .venv && source .venv/bin/activate
+#   pip install -r requirements.txt
 
 # data
 pandas==3.0.6
